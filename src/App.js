@@ -1,25 +1,27 @@
 import React from 'react';
-import logo from './logo.svg';
+
+
+import Container from "react-bootstrap/Container"
+import Form from "react-bootstrap/Form"
 import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Container className="p-3">
+      <Form>
+
+      <div class="form-group">
+
+          <label for="exampleInputISBN">ISBN</label>
+          <input type="text" class="form-control" id="exampleInputISBN" aria-describedby="ISBNHelp"/>
+          <small id="ISBNHelp" class="form-text text-muted">Introduce o escanea el ISBN</small>
+          <input type="text" class="form-control mt-4 vh-50" id="OutputISBN" />
+
+      </div>
+
+      </Form>
+    </Container>
+    
   );
 }
 
