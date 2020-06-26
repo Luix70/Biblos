@@ -5,9 +5,10 @@ import Form from "react-bootstrap/Form";
 
 async function handleInputChange(event) {
   const val = event.target.value;
-
-  if (val.length === 10) {
-    const result = await getData(val);
+  const rval = val.replace(/-/g, "");
+  if (rval.length === 10 || rval.length === 13) {
+    const result = await getData(rval);
+    console.log(rval);
     console.log(result);
     const items = result.totalItems;
     const titulo =
