@@ -2,11 +2,17 @@ import React from "react";
 import { getData } from "./components/datosWeb.js";
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
-import "./App.css";
-function handleInputChange(event) {
+
+async function handleInputChange(event) {
   const val = event.target.value;
-  if (val.length === 13) {
-    console.log(getData(val));
+
+  if (val.length === 10) {
+    const result = await getData(val);
+    console.log(result);
+    const items = result.totalItems;
+    const titulo =
+      items > 0 ? result.items[0].volumeInfo.title : "No Encontrado";
+    document.getElementById("OutputISBN").value = titulo;
   }
 }
 function App() {
