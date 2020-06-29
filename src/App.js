@@ -2,6 +2,7 @@ import React from "react";
 import { getData } from "./components/datosWeb.js";
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
+import Image from "react-bootstrap/Image";
 
 async function handleInputChange(event) {
   const val = event.target.value;
@@ -13,7 +14,12 @@ async function handleInputChange(event) {
     const items = result.totalItems;
     const titulo =
       items > 0 ? result.items[0].volumeInfo.title : "No Encontrado";
+
+    const cover =
+      items > 0 ? result.items[0].volumeInfo.imageLinks.thumbnail : "";
+
     document.getElementById("OutputISBN").value = titulo;
+    document.getElementById("cover").src = cover;
   }
 }
 function App() {
@@ -33,6 +39,7 @@ function App() {
             Introduce o escanea el ISBN
           </small>
           <input type="text" class="form-control mt-4 vh-50" id="OutputISBN" />
+          <Image id="cover" src="" fluid />
         </div>
       </Form>
     </Container>
