@@ -5,6 +5,9 @@ import Form from "react-bootstrap/Form";
 import Image from "react-bootstrap/Image";
 
 class Buscador extends Component {
+  handleNoChange = () => {
+    return null;
+  };
   handleInputChange = async (event) => {
     const val = event.target.value;
     const rval = val.replace(/-/g, "");
@@ -13,15 +16,7 @@ class Buscador extends Component {
 
       this.setState({ result });
 
-      // const items = result.totalItems;
-      //const titulo =
-      // items > 0 ? result.items[0].volumeInfo.title : "No Encontrado";
-
-      // const cover =
-      //   items > 0 ? result.items[0].volumeInfo.imageLinks.thumbnail : "";
-
-      //document.getElementById("OutputISBN").value = titulo;
-      //document.getElementById("cover").src = cover;
+      console.log(result);
     }
   };
 
@@ -48,7 +43,7 @@ class Buscador extends Component {
             <label htmlFor="exampleInputISBN">ISBN</label>
             <input
               type="text"
-              className="form-control"
+              className="form-control w-50"
               id="exampleInputISBN"
               aria-describedby="ISBNHelp"
               onChange={this.handleInputChange}
@@ -57,18 +52,23 @@ class Buscador extends Component {
               Introduce o escanea el ISBN
             </small>
 
+            <label htmlFor="outputTitle" className="mt-4">
+              Titulo
+            </label>
             <input
               type="text"
-              className="form-control mt-4 vh-50"
-              value={libro.title}
-              readOnly="true"
+              id="outputTitle"
+              className="form-control "
+              defaultValue={libro.title}
             />
-
-            <input
+            <label htmlFor="outputDesc" className="mt-4">
+              Descripción
+            </label>
+            <textarea
               type="text"
-              className="form-control mt-4 vh-50"
-              value={libro.description}
-              readOnly="true"
+              id="outputDesc"
+              className="form-control"
+              defaultValue={libro.description}
             />
 
             <Image id="cover" src={libro.imageLinks.thumbnail} fluid />
