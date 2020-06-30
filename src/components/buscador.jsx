@@ -13,15 +13,15 @@ class Buscador extends Component {
 
       this.setState({ result });
 
-      const items = result.totalItems;
-      const titulo =
-        items > 0 ? result.items[0].volumeInfo.title : "No Encontrado";
+      // const items = result.totalItems;
+      //const titulo =
+      // items > 0 ? result.items[0].volumeInfo.title : "No Encontrado";
 
-      const cover =
-        items > 0 ? result.items[0].volumeInfo.imageLinks.thumbnail : "";
+      // const cover =
+      //   items > 0 ? result.items[0].volumeInfo.imageLinks.thumbnail : "";
 
-      document.getElementById("OutputISBN").value = titulo;
-      document.getElementById("cover").src = cover;
+      //document.getElementById("OutputISBN").value = titulo;
+      //document.getElementById("cover").src = cover;
     }
   };
 
@@ -32,8 +32,15 @@ class Buscador extends Component {
 
     const { totalItems, items } = this.state.result;
 
-    var libro = totalItems ? items[0] : { title: "", details: "" };
-
+    var libro = totalItems
+      ? items[0].volumeInfo
+      : {
+          title: "",
+          description: "",
+          cover: "",
+          imageLinks: { thumbnail: "" },
+        };
+    console.log(libro);
     return (
       <Container className="p-3">
         <Form>
@@ -53,10 +60,18 @@ class Buscador extends Component {
             <input
               type="text"
               className="form-control mt-4 vh-50"
-              id="OutputISBN"
               value={libro.title}
+              readOnly="true"
             />
-            <Image id="cover" src="" fluid />
+
+            <input
+              type="text"
+              className="form-control mt-4 vh-50"
+              value={libro.description}
+              readOnly="true"
+            />
+
+            <Image id="cover" src={libro.imageLinks.thumbnail} fluid />
           </div>
         </Form>
       </Container>
